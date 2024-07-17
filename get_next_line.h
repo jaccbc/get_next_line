@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 02:38:32 by joandre-          #+#    #+#             */
-/*   Updated: 2024/05/31 23:06:40 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/07/17 10:27:06 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@
 #  define BUFFER_SIZE 42
 # endif
 
-typedef struct s_list
+typedef struct s_line
 {
 	char			*buff;
-	struct s_list	*next;
-}	t_list;
+	struct s_line	*next;
+}	t_line;
 
 void	clean_buffer(char *buffer, size_t len);
-bool	is_newline(t_list *node);
-size_t	get_line_size(t_list *node);
-void	copy_line(t_list *node, char *line);
-t_list	*last_node(t_list *node);
+bool	is_newline(t_line *node);
+size_t	get_line_size(t_line *node);
+void	copy_line(t_line *node, char *line);
+t_line	*last_node(t_line *node);
 char	*get_next_line(int fd);
 
 #endif

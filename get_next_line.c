@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-static t_list	*free_node(t_list **node, t_list *new, char *buffer)
+static t_line	*free_node(t_line **node, t_line *new, char *buffer)
 {
-	t_list	*linx;
+	t_line	*linx;
 
 	if (!node || !new || !buffer)
 		return (NULL);
@@ -36,10 +36,10 @@ static t_list	*free_node(t_list **node, t_list *new, char *buffer)
 	return (new);
 }
 
-static t_list	*clear_list(t_list **node)
+static t_line	*clear_list(t_line **node)
 {
-	t_list	*last;
-	t_list	*new;
+	t_line	*last;
+	t_line	*new;
 	char	*buffer;
 	size_t	i;
 	size_t	k;
@@ -47,7 +47,7 @@ static t_list	*clear_list(t_list **node)
 	if (!(*node))
 		return (NULL);
 	buffer = malloc(BUFFER_SIZE + 1);
-	new = malloc(sizeof(t_list *));
+	new = malloc(sizeof(t_line *));
 	if (!buffer || !new)
 		return (NULL);
 	clean_buffer(buffer, BUFFER_SIZE + 1);
@@ -64,10 +64,10 @@ static t_list	*clear_list(t_list **node)
 	return (free_node(node, new, buffer));
 }
 
-static void	create_list(t_list **node, int fd)
+static void	create_list(t_line **node, int fd)
 {
 	char	*buffer;
-	t_list	*new;
+	t_line	*new;
 
 	while (!is_newline(*node))
 	{
@@ -80,7 +80,7 @@ static void	create_list(t_list **node, int fd)
 			free(buffer);
 			return ;
 		}
-		new = malloc(sizeof(t_list *));
+		new = malloc(sizeof(t_line *));
 		if (!new)
 			return ;
 		if (!(last_node(*node)))
@@ -95,7 +95,7 @@ static void	create_list(t_list **node, int fd)
 char	*get_next_line(int fd)
 {
 	char			*line;
-	static t_list	*node;
+	static t_line	*node;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

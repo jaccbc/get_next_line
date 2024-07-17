@@ -25,13 +25,13 @@ typedef struct s_list
 {
 	char			*buff;
 	struct s_list	*next;
-}	t_list;
+}	t_line;
 
 void	clean_buffer(char *buffer, size_t len);
-bool	is_newline(t_list *node);
-size_t	get_line_size(t_list *node);
-void	copy_line(t_list *node, char *line);
-t_list	*last_node(t_list *node);
+bool	is_newline(t_line *node);
+size_t	get_line_size(t_line *node);
+void	copy_line(t_line *node, char *line);
+t_line	*last_node(t_line *node);
 char	*get_next_line(int fd);
 
 #endif
