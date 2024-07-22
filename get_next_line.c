@@ -6,7 +6,7 @@
 /*   By: joandre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 01:29:46 by joandre-          #+#    #+#             */
-/*   Updated: 2024/05/31 23:25:51 by joandre-         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:41:22 by joandre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_line	*clear_list(t_line **node)
 	if (!(*node))
 		return (NULL);
 	buffer = malloc(BUFFER_SIZE + 1);
-	new = malloc(sizeof(t_line *));
+	new = malloc(sizeof(t_line));
 	if (!buffer || !new)
 		return (NULL);
 	clean_buffer(buffer, BUFFER_SIZE + 1);
@@ -80,7 +80,7 @@ static void	create_list(t_line **node, int fd)
 			free(buffer);
 			return ;
 		}
-		new = malloc(sizeof(t_line *));
+		new = malloc(sizeof(t_line));
 		if (!new)
 			return ;
 		if (!(last_node(*node)))
@@ -95,7 +95,7 @@ static void	create_list(t_line **node, int fd)
 char	*get_next_line(int fd)
 {
 	char			*line;
-	static t_line	*node;
+	static t_line	*node = NULL;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
